@@ -1,0 +1,216 @@
+.calendar {
+		/* padding between the header & the dates */
+			/* top and bottom are 10px and right and left are 0 */
+	 padding: 10px 0;
+
+	 /* the grid for the calendar */
+	 	/* the basis of it */
+	 display: grid;
+
+	 /* making sure all the columns are the same length */
+	 	/* repeat 7 for the days of the week */
+		/* minmax (50px) means it will not shrink smaller than 50 pixels */
+		/* minmax(1fr) means it will take up the maximum available space */
+	 grid-template-columns: repeat(7, minmax(50px, 1fr));
+
+	 /* if content overflows the box then it will add a scrollbar */
+	 overflow:auto;
+}
+
+ .calendar-container {
+	 /* if the screen is made smaller it will not hit the border of the window */
+	 width: 90%;
+
+	 /* horizontally  centering the calendar in the center of the page*/
+	 margin: auto;
+
+	 /* if the calendar overflows the container then hide it */
+	 overflow: hidden;
+
+	 /* making the background light orange */
+	 background: bisque;
+
+	 /* not letting the calendar get bigger than 1500 pixels */
+	 max-width: 1500px;
+}
+
+
+ .calendar-header {
+	 /* putting the month and year in the center of the calendar */
+	 text-align: center;
+
+	 /* putting 20 pixels of padding between the month and the top of the calendar */
+	 padding: 10px 0;
+
+	 /* the line under the year */
+	 border-bottom: 1.5px solid;
+}
+
+
+/* making the month font bigger */
+ .calendar-header h1 {
+	 font-size: 20px;
+}
+
+/* the year on the the header */
+ .calendar-header p {
+	 color: dimgrey;
+
+	 font-size: 18px;
+
+	 /* bolding it slightly */
+	 font-weight: 400;
+
+	 /* moving the black line up */
+	 margin: 5px 0 0 0;
+}
+
+
+ .date {
+	 /* makes the bottom have a border */
+	 border-bottom: 1px solid;
+
+	 /* makes the right have a border */
+	 border-right: 1px solid;
+
+	 /* aligning the dates in the center */
+	 text-align: center;
+
+	 /* making the first and last row the same size as the others */
+	 padding: 14px 20px;
+
+	 /* making the dates bigger font */
+	 font-size: 15px;
+
+	 color: dimgrey;
+
+	 /* making the middle row of dates show up */
+	 z-index: 1;
+}
+
+
+/* for adding the events via code */
+ .date:nth-of-type(7n + 7) {
+	 border-right: 0;
+}
+ .date:nth-of-type(n + 1):nth-of-type(-n + 7) {
+	 grid-row: 2;
+}
+ .date:nth-of-type(n + 8):nth-of-type(-n + 14) {
+	 grid-row: 3;
+}
+ .date:nth-of-type(n + 15):nth-of-type(-n + 21) {
+	 grid-row: 4;
+}
+ .date:nth-of-type(n + 22):nth-of-type(-n + 28) {
+	 grid-row: 5;
+}
+ .date:nth-of-type(n + 29):nth-of-type(-n + 35) {
+	 grid-row: 6;
+}
+ .date:nth-of-type(7n + 1) {
+	 grid-column:1/1;
+}
+
+
+/* keeping the rows in line */
+ .date:nth-of-type(7n + 2) {
+	 grid-column: 2/2;
+}
+ .date:nth-of-type(7n + 3) {
+	 grid-column: 3/3;
+}
+ .date:nth-of-type(7n + 4) {
+	 grid-column: 4/4;
+}
+ .date:nth-of-type(7n + 5) {
+	 grid-column: 5/5;
+}
+ .date:nth-of-type(7n + 6) {
+	 grid-column: 6/6;
+}
+ .date:nth-of-type(7n + 7) {
+	 grid-column: 7/7;
+}
+
+/* For Mon-Sun */
+ .day-name {
+	 font-size: 15px;
+	 color: dimgrey;
+	 text-align: center;
+
+	 /* adding a line to be the top of the calendar */
+	 border-bottom: 1px solid;
+	 /* putting space between the border and the top of the calendar */
+	 line-height: 50px;
+}
+
+/* for the days that are not in that month */
+ .day--disabled {
+	 /* just making them white boxes */
+	 color:white;
+	 background-color: white;
+
+	 /* making the user */
+	 cursor: not-allowed;
+}
+
+.task {
+	/* 5 px for tall the tasks are */
+ /* 15 px for how far in the text is indented from the edge*/
+	padding: 5px 15px;
+	/* the space between the tasks and the borders fo the dates */
+	margin: 12px;
+
+	/* showing the beginning of the task */
+	border-left-style: solid;
+	font-size: 14px;
+	position: relative;
+}
+
+/* for the project of assignemnt 4 */
+ .task--projects {
+	 border-left-color: #fdb44d;
+	 /* grid row 4 refers to Thursday*/
+	 	/* span 5 means it spans 5 days */
+	 grid-column: 4/ span 5;
+	 /*this would be the fourth week*/
+	 	/* because MON-SUN are a row */
+	 grid-row: 5;
+
+	 /* the background of the tag */
+	 background: lightblue;
+
+	 /*aligning the task within the week  */
+	 align-self: center;
+
+	  /* the color of the text on the tag */
+	 color: black;
+}
+
+/* same as above */
+ .task--danger {
+	 border-left-color: #691c1c;
+	 grid-column: 2 / span 3;
+	 grid-row: 3;
+	 background: #e65054;
+	 color: white;
+}
+
+/* same as above */
+ .task--info {
+	 border-left-color: darkgreen;
+	 grid-column: 6 / span 2;
+	 grid-row: 5;
+	 background: #68de7c;
+	 align-self: flex-end;
+	 color: white;
+}
+/* same as above */
+ .task--primary {
+	 background: #4786ff;
+	 border-left-color:darkblue;
+	 grid-column: 3 / span 3;
+	 grid-row: 4;
+	 color: #fff;
+}
